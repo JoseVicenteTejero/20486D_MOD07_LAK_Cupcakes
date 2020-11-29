@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
+
+using Microsoft.AspNetCore.Hosting;  //Repositorios
 using Cupcakes.Models;
 using Cupcakes.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -78,6 +79,7 @@ namespace Cupcakes.Controllers
                                      c => c.Description,
                                      c => c.GlutenFree,
                                      c => c.Price);
+                                     //c => c.CaloricValue); // añadir nuevo campo 
             if (isUpdated == true)
             {
                 _repository.SaveChanges();

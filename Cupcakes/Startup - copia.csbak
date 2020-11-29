@@ -9,39 +9,30 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Cupcakes.Data;
 using Microsoft.EntityFrameworkCore;
-using Cupcakes.Repositories;  // Inyección de dependencia de los repositorios.
+using Cupcakes.Repositories;
 
 namespace Cupcakes
 {
     public class Startup
     {
-        private IConfiguration _configuration;   //Inyección dependencia Iconfiguration.
+        private IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddTransient<ICupcakeRepository, CupcakeRepository>();
             services.AddDbContext<CupcakeContext>(options =>
-                        options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddTransient<ICupcakeRepository, CupcakeRepository>();   // Inyección dependencia repositorios
-
-            //string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=BakeriesDb;Trusted_Connection=True;MultipleActiveResultSets=true";
-            //services.AddDbContext<CupcakeContext>(options =>
-            //          options.UseSqlServer(connectionString));
-
-
-            
+            options.UseSqlite("Data Source=cupcake.db"));
+            services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, CupcakeContext cupcakeContext)
         {
-            //cupcakeContext.Database.EnsureDeleted();
-            //cupcakeContext.Database.EnsureCreated();
+            cupcakeContext.Database.EnsureDeleted();
+            cupcakeContext.Database.EnsureCreated();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
