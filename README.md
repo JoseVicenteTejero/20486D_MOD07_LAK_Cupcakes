@@ -24,6 +24,4 @@ Use Migrations to update the database schema
 
 
 PROBLEMAS
-Al ejecutar da el siguiente error:
-Esta página no funcionalocalhost no puede procesar esta solicitud en este momento.
-HTTP ERROR 500
+He tenido varios problemas pero finalmente ha funcionado. Bonita práctica.
