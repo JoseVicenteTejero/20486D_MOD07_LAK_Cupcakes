@@ -18,37 +18,13 @@ namespace Cupcakes.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Bakery>().HasData(
-       new Bakery
-       {
-           BakeryId = 1,
-           BakeryName = "Gluteus Free",
-           Address = "635 Brighton Circle Road",
-           Quantity = 8
-       },
-       new Bakery
-       {
-           BakeryId = 2,
-           BakeryName = "Cupcakes Break",
-           Address = "4323 Jerome Avenue",
-           Quantity = 22
-       },
-       new Bakery
-       {
-           BakeryId = 3,
-           BakeryName = "Cupcakes Ahead",
-           Address = "2553 Pin Oak Drive",
-           Quantity = 18
-       },
-       new Bakery
-       {
-           BakeryId = 4,
-           BakeryName = "Sugar",
-           Address = "1608 Charles Street",
-           Quantity = 30
-       },
+       new Bakery {BakeryId = 1, BakeryName = "Gluteus Free", Address = "635 Brighton Circle Road", Quantity = 8},
+       new Bakery {BakeryId = 2, BakeryName = "Cupcakes Break", Address = "4323 Jerome Avenue", Quantity = 22},
+       new Bakery {BakeryId = 3, BakeryName = "Cupcakes Ahead", Address = "2553 Pin Oak Drive", Quantity = 18},
+       new Bakery {BakeryId = 4, BakeryName = "Sugar", Address = "1608 Charles Street", Quantity = 30});
+
         modelBuilder.Entity<Cupcake>().HasData(
-          new Cupcake
-          {
+          new Cupcake {
               CupcakeId = 1,
               CupcakeType = CupcakeType.Birthday,
               Description = "Vanilla cupcake with coconut cream",
@@ -90,9 +66,7 @@ namespace Cupcakes.Data
               BakeryId = 4,
               ImageMimeType = "image/jpeg",
               ImageName = "turquoise-cupcake.jpg"
-          }
-      )
-   );
+          });
         }
     }
 }

@@ -36,6 +36,12 @@ namespace Cupcakes.Controllers
             }
             return View(cupcake);
         }
+        private void PopulateBakeriesDropDownList(int? selectedBakery = null)
+        {
+            var bakeries = _repository.PopulateBakeriesDropDownList();
+            ViewBag.BakeryID = new SelectList(bakeries.AsNoTracking(), "BakeryId", "BakeryName", selectedBakery);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -107,11 +113,7 @@ namespace Cupcakes.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private void PopulateBakeriesDropDownList(int? selectedBakery = null)
-        {
-            var bakeries = _repository.PopulateBakeriesDropDownList();
-            ViewBag.BakeryID = new SelectList(bakeries.AsNoTracking(), "BakeryId", "BakeryName", selectedBakery);
-        }
+       
 
         public IActionResult GetImage(int id)
         {
